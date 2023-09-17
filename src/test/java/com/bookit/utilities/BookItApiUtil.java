@@ -9,7 +9,8 @@ public class BookItApiUtil {
 
 
     public static String generateToken(String email,String password){
-        Response response = given().
+        System.out.println("Environment.BASE_URL = " + Environment.BASE_URL);
+        Response response = given().log().all().
                 accept(ContentType.JSON)
                 .queryParam("email", email)
                 .queryParam("password", password)
