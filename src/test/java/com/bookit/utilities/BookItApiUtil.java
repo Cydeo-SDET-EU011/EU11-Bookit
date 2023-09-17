@@ -1,5 +1,7 @@
 package com.bookit.utilities;
 
+import io.restassured.*;
+import io.restassured.config.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -9,11 +11,11 @@ public class BookItApiUtil {
 
 
     public static String generateToken(String email,String password){
-        System.out.println("Environment.BASE_URL = " + Environment.BASE_URL);
+
         Response response = given().log().all().
                 accept(ContentType.JSON)
                 .queryParam("email", email)
-                .queryParam("password", password)
+                .queryParam("password", password.toString())
                 .when()
                 .get(Environment.BASE_URL + "/sign")
                 .then().log().all().extract().response();
